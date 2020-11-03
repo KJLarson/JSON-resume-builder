@@ -1,4 +1,26 @@
+$background-color: bisque;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100vh;
+}
+
 body {
-  background-color: bisque;
+  height: 100%;
+  background-color: $background-color;
   font-family: Helvetica, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#resume-builder-container {
+  border: black 1px solid;
 }
