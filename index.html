@@ -5,18 +5,304 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JSON Resume Builder</title>
 
-  <link rel="stylesheet" href="dist/style.css?cb=1604433940456">
+  <link rel="stylesheet" href="dist/style.css?cb=1604368408998">
 </head>
 <body>
   <h1>JSON Resume Builder</h1>
   <div id="resume-builder-container"></div>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js" integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw==" crossorigin="anonymous"></script>
+
   <script id="resume-template" type='text/x-handlebars-template'>
-    <h2>{{basics.name}}</h2>
+    
+    <div class="basics">
+    <h2>{{basics/name}}</h2>
+    {{#if basics/label}}
+      <h3>{{basics/label}}</h3>
+    {{/if}}
+    {{#if basics/picture}}
+      <img src="{{basics/picture}}" alt="Photo of {{basics/name}}">
+    {{/if}}
+      <ul>
+        {{#if basics/email}}
+        <li>{{basics/email}}</li>
+        {{/if}}
+        {{#if basics/phone}}
+        <li>{{basics/phone}}</li>
+        {{/if}}
+        {{#if basics/website}}
+        <li>{{basics/website}}</li>
+        {{/if}}
+      </ul>
+    {{#if basics/summary}}
+      <p>{{basics/summary}}</p>
+    {{/if}}
+
+    <div class='location'>
+      {{#if basics/location/address}}
+        <p>{{basics/location/address}}</p>
+      {{/if}}
+      {{#if basics/location/city}}
+        <p>{{basics/location/city}}</p>
+      {{/if}}
+      {{#if basics/location/postalCode}}
+        <p>{{basics/location/postalCode}}</p>
+      {{/if}}
+      {{#if basics/location/region}}
+        <p>{{basics/location/region}}</p>
+      {{/if}}
+      {{#if basics/location/countryCode}}
+        <p>{{basics/location/countryCode}}</p>
+      {{/if}}
+    </div>
+    <div class='profiles'>
+      <h4>Profiles</h4>
+      {{#if basics/profiles}}
+        {{#each basics/profiles}}
+          <ul>
+            {{#if this/network}}
+            <li>{{this/network}}</li>
+
+            <li>{{this/username}}</li>
+            <li>{{this/url}}</li>
+            {{/if}}
+          </ul>
+        {{/each}}
+      {{/if}}
+    </div>
+    </div>
+
+    <div class='work'>
+      <h4>Work</h4>
+      {{#if work}}
+          {{#each work}}
+            <ul>
+              {{#if this/company}}
+                <li>{{this/company}}</li>
+              {{/if}}
+              {{#if this/position}}
+                <li>{{this/position}}</li>
+              {{/if}}
+              {{#if this/website}}
+                <li>{{this/website}}</li>
+              {{/if}}
+              {{#if this/startDate}}
+                <li>Start Date: {{this/startDate}}</li>
+              {{/if}}
+              {{#if this/endDate}}
+                <li>End Date: {{this/endDate}}</li>
+              {{/if}}
+              {{#if this/summary}}
+                <li>{{this/summary}}</li>
+              {{/if}}
+              {{#if this/highlights}}
+                <li><ul>
+                  {{#each this/highlights}}
+                    <li>{{this}}</li>
+                  {{/each}}
+                </ul></li>
+              {{/if}}
+            </ul>
+          {{/each}}
+        {{/if}}
+      </div>
+
+      <div class="volunteer">
+        <h4>Volunteer</h4>
+        {{#if volunteer}}
+          {{#each volunteer}}
+            <ul>
+              {{#if this/organization}}
+                <li>{{this/organization}}</li>
+              {{/if}}
+              {{#if this/position}}
+                <li>{{this/position}}</li>
+              {{/if}}
+              {{#if this/website}}
+                <li>{{this/website}}</li>
+              {{/if}}
+              {{#if this/startDate}}
+                <li>Start Date: {{this/startDate}}</li>
+              {{/if}}
+              {{#if this/endDate}}
+                <li>End Date: {{this/endDate}}</li>
+              {{/if}}
+              {{#if this/summary}}
+                <li>{{this/summary}}</li>
+              {{/if}}
+              {{#if this/highlights}}
+                <li><ul>
+                  {{#each this/highlights}}
+                    <li>{{this}}</li>
+                  {{/each}}
+                </ul></li>
+              {{/if}}
+            </ul>
+          {{/each}}
+        {{/if}}
+      </div>
+
+      <div class="education">
+        <h4>Education</h4>
+      {{#if education}}
+          {{#each education}}
+            <ul>
+              {{#if this/institution}}
+                <li>{{this/institution}}</li>
+              {{/if}}
+              {{#if this/area}}
+                <li>{{this/area}}</li>
+              {{/if}}
+              {{#if this/studyType}}
+                <li>{{this/studyType}}</li>
+              {{/if}}
+              {{#if this/startDate}}
+                <li>Start Date: {{this/startDate}}</li>
+              {{/if}}
+              {{#if this/endDate}}
+                <li>End Date: {{this/endDate}}</li>
+              {{/if}}
+              {{#if this/gpa}}
+                <li>GPA: {{this/gpa}}</li>
+              {{/if}}
+              {{#if this/courses}}
+                <li><ul>
+                  {{#each this/courses}}
+                    <li>{{this}}</li>
+                  {{/each}}
+                </ul></li>
+              {{/if}}
+            </ul>
+          {{/each}}
+        {{/if}}
+      </div>
+
+      <div class="awards">
+        <h4>Awards</h4>
+        {{#if awards}}
+          {{#each awards}}
+            <ul>
+              {{#if this/title}}
+                <li>{{this/title}}</li>
+              {{/if}}
+              {{#if this/date}}
+                <li>{{this/date}}</li>
+              {{/if}}
+              {{#if this/awarder}}
+                <li>{{this/awarder}}</li>
+              {{/if}}
+              {{#if this/summary}}
+                <li>{{this/summary}}</li>
+              {{/if}}
+            </ul>
+          {{/each}}
+        {{/if}}
+      </div>
+
+      <div class="publications">
+        <h4>Publications</h4>
+        {{#if publications}}
+          {{#each publications}}
+          <ul>
+            {{#if this/name}}
+              <li>{{this/name}}</li>
+            {{/if}}
+            {{#if this/publisher}}
+              <li>{{this/publisher}}</li>
+            {{/if}}
+            {{#if this/releaseDate}}
+              <li>{{this/releaseDate}}</li>
+            {{/if}}
+            {{#if this/website}}
+                <li>{{this/website}}</li>
+            {{/if}}
+            {{#if this/summary}}
+              <li>{{this/summary}}</li>
+            {{/if}}
+            </ul>
+          {{/each}}
+        {{/if}}
+      </div>
+
+      <div class="skills">
+        <h4>Skills</h4>
+        {{#if skills}}
+          {{#each skills}}
+          <ul>
+            {{#if this/name}}
+              <li>{{this/name}}</li>
+            {{/if}}
+            {{#if this/level}}
+              <li>{{this/level}}</li>
+            {{/if}}
+            {{#if this/keywords}}
+              <ul>
+                {{#each this/keywords}}
+                  <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            {{/if}}
+          </ul>
+          {{/each}}
+        {{/if}}
+      </div>
+
+      <div class="languages">
+        <h4>Languages</h4>
+        {{#if languages}}
+          {{#each languages}}
+          <ul>
+            {{#if this/language}}
+              <li>{{this/language}}</li>
+            {{/if}}
+            {{#if this/fluency}}
+              <li>{{this/fluency}}</li>
+            {{/if}}
+            </ul>
+          {{/each}}
+        {{/if}}
+      </div>
+
+      <div class="interests">
+        <h4>Interests</h4>
+        {{#if interests}}
+          {{#each interests}}
+          <ul>
+            {{#if this/name}}
+              <li>{{this/name}}</li>
+            {{/if}}
+            {{#if this/keywords}}
+              <ul>
+                {{#each this/keywords}}
+                  <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            {{/if}}
+          </ul>
+          {{/each}}
+        {{/if}}
+      </div>
+
+      <div class="references">
+        <h4>References</h4>
+        {{#if references}}
+          {{#each references}}
+          <ul>
+            {{#if this/name}}
+              <li>{{this/name}}</li>
+            {{/if}}
+            {{#if this/reference}}
+              <li>{{this/reference}}</li>
+            {{/if}}
+            
+          </ul>
+          {{/each}}
+        {{/if}}
+      </div>
+
   </script>
 
-  <script src="dist/all.js?cb=1604433940456"></script>
+  <script src="dist/all.js?cb=1604368408998"></script>
 
 </body>
 </html>
