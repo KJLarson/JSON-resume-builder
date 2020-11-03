@@ -16,8 +16,7 @@
     "gulp-postcss": "^9.0.0",
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.1.0",
-    "gulp-sourcemaps": "^2.6.5",
-    "terser": "^5.3.8"
+    "gulp-sourcemaps": "^2.6.5"
   },
   "dependencies": {
     "handlebars": "^4.7.6"
